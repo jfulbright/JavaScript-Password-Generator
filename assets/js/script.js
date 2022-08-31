@@ -12,17 +12,14 @@ const alphaLowerCaseSet = alphaUpperCaseSet.map(Element => {
 });
 
 
-// Declare userInputs values to be used as arguments in password function
-
-
 // Add event listener to the button that invokes 'writePassword' function when clicked.
 generateBtn.addEventListener("click", userInputConditions);
 
-// Display generated password value in the form's text field
+// Prompt user for Character Type preferences and display a generated password value in the form's text field
 function userInputConditions() {
 var passwordLength = window.prompt("Select Password Length between 8 and 128");
  
-    if  (!passwordLength) {
+  if  (!passwordLength) {
       // If user pressed Cancel, immediately end function
         return;
     } else if (passwordLength < 8 || passwordLength > 128) {
@@ -37,51 +34,86 @@ var passwordLength = window.prompt("Select Password Length between 8 and 128");
       var isLowerCase = window.confirm("Include Lowercase Characters?");
         console.log(`Lowercase Characters = ${isLowerCase}`);
       
+    // validate condition where one character type must be selected
+    if (isSpecialChar === false && isNumeric === false && isUpperCase === false && isLowerCase === false ) {
+      alert(`You must select at least one character type. Please try again.
+      \n You selected:
+      \n Special Characters = ${isSpecialChar}
+      \n Numeric Characters = ${isNumeric}
+      \n Uppercase Characters = ${isUpperCase}
+      \n Lowercase Characters = ${isLowerCase}
+      `);
+      return;
+    }
     
 
-
-console.log("conditions passed")
-  var password = generateRandomPassword(passwordLength); //invokes random password function and passes passwordLength value as an argument. Returns random password from special chars function
-  var passwordText = document.querySelector("#password"); //stores location of password textarea in variable "textarea#password"
-  passwordText.value = password; //sets the password value returned from "generatePassword" function to the password textarea
-  }
+  console.log("conditions passed")
+    var password = generateRandomPassword(passwordLength, isSpecialChar, isNumeric, isUpperCase, isLowerCase); //invokes random password function and passes passwordLength value as an argument. Returns random password from special chars function
+    var passwordText = document.querySelector("#password"); //stores location of password textarea in variable "textarea#password"
+    passwordText.value = password; //sets the password value returned from "generatePassword" function to the password textarea
+    }
 }
 
 
+// This funciton generates a password random special chars based. Arguments include Password Length, Include lowercase, uppercase, numeric, and/or special characters
+function  generateRandomPassword (passwordLength, isSpecialChar, isNumeric, isUpperCase, isLowerCase) {
+  console.log(passwordLength, isSpecialChar, isNumeric, isUpperCase, isLowerCase);
+ 
+  
+  // Build the final password array based on user input conditions
+      
+  
+    // Solution #1: If then conditions to concatinate
+    var finalArray = []; // declare an empty array
+
+            if (isSpecialChar === true) {
+                finalArray = specialCharSet;
+                
+            } else 
+            if (isNumeric === true) {
+                finalArray.concat(numericSet);
+                console.log("show me the numbers")
+              }
+            if (isUpperCase === true) {
+              finalArray.concat(alphaUpperCaseSet);
+            
+              }
+            if (isLowerCase === true) {
+              finalArray.concat(alphaLowerCaseSet);
+              
+            }
+            console.log(finalArray);
 
 
-// Generate random special chars based. Arguments include Password Length, Include lowercase, uppercase, numeric, and/or special characters
-function  generateRandomPassword (l) {
+       
+  
+  
+  
+  // This works for one array
   var passwordArray = []; // create an empty array
   
-  for (let i = 0; i < l; i++) {
+  for (let i = 0; i < passwordLength; i++) {
     var index = Math.floor(Math.random() * alphaUpperCaseSet.length); // creates random index of special characters array for each loop
     passwordArray.push(alphaUpperCaseSet[index]); // pushes value of random index into the password array
   }
-  let password = passwordArray.join('');
+  let password = passwordArray.join(''); //concatinates array elements into a sting with no delimeters
   console.log(password);
   return password;
 
 }
 
 
-// Argument Logic:
-// if specialCharSet = true then concatinate array and run for loop;
-// else 
-// 
+// Options:
+// 1. Create an array of of character sets that are true & concat them into new array
+//      Blocker: Can't use if statements to add charsets to an array
+//      Solutions: 
+//        1. Helper function
+//        2. Callback function - FAIL
+//        3. Nested funcion
+//        4. For loops
+//        5. Array filter - FAIL
 
 
 
 
 
-
-//TODO List:
-
-
-// Write logic for userInput CharType
-// How to combine multiple arrays into one ("if user selects input concatinate arrays")
-// Wireup to HTML form
-
-
-// Error Handling
-// Password length check: onblur, value must be >= 8 && <=128
