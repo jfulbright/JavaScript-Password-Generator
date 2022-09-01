@@ -61,26 +61,26 @@ function  generateRandomPassword (passwordLength, isSpecialChar, isNumeric, isUp
 
             if (isSpecialChar === true) {
                 finalArray = specialCharSet;
-                console.log("show me the specialChars")
-                console.log(finalArray);
+                // console.log("show me the specialChars")
+                // console.log(finalArray);
                 
             } 
             if (isNumeric === true) {
                 finalArray = finalArray.concat(numericSet);
-                console.log("show me the numbers")
-                console.log(finalArray);
+                // console.log("show me the numbers")
+                // console.log(finalArray);
               }
             if (isUpperCase === true) {
               finalArray = finalArray.concat(alphaUpperCaseSet);
-              console.log("show me the UpperCase")
-                console.log(finalArray);
+              // console.log("show me the UpperCase")
+              // console.log(finalArray);
               }
             if (isLowerCase === true) {
               finalArray = finalArray.concat(alphaLowerCaseSet);
-              console.log("show me the LowerCase")
-                console.log(finalArray);
+              // console.log("show me the LowerCase")
+              // console.log(finalArray);
             }
-            console.log(finalArray);
+            // console.log(finalArray);
 
   
   var passwordArray = []; // Declare an empty array to store random password characters
@@ -90,7 +90,7 @@ function  generateRandomPassword (passwordLength, isSpecialChar, isNumeric, isUp
     passwordArray.push(finalArray[index]); // pushes value of random index into the password array
   }
   let password = passwordArray.join(''); //concatinates array elements into a sting with no delimeters
-  console.log(password);
+  // console.log(password);
   return password;
 
 }
