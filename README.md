@@ -18,11 +18,11 @@ The objective of this project was to create an application that enables users to
 ## Visuals
 ### User Password Preference Window Prompts: 
 
-![Desktop](../JavaScript-Passsword-Generator/assets/images/Password-Gen-Prompts.png "Title")
+![Desktop](assets/images/Password-Gen-Prompts.png "Title")
 
 ### Display Generated Password on Page:
 
-![Desktop](../JavaScript-Passsword-Generator/assets/images/Password-Gen-UX.png "Title")
+![Desktop](assets/images/Password-Gen-UX.png "Title")
 
 
 ## Installation
@@ -37,7 +37,7 @@ Future Roadmap Iterations will include:
 
 
 ## License
-See  [LICENSE](/LICENSE "LICENSE") for more information.
+See  [LICENSE](LICENSE "LICENSE") for more information.
 
 ## Project status
 This deployed site is an MVP iteration that includes foundation future functionality. 
